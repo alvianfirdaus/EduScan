@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/item.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/widgets/bottom_appbar.dart';
 import 'package:myapp/widgets/bottom_appbar_detail.dart';
-import 'package:myapp/widgets/floating_button_appbar.dart';
 
 class DetailKtp extends StatelessWidget {
   final Item item;
