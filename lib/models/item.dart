@@ -10,6 +10,9 @@ class Item {
   final String pekerjaan;
   final String kewarganegaraan;
   final String berlaku;
+  final String tanggalsc;
+  final String waktusc;
+  final String imageUrl;
 
   Item({
     required this.nik,
@@ -23,5 +26,8 @@ class Item {
     required this.pekerjaan,
     required this.kewarganegaraan,
     required this.berlaku,
+    required this.tanggalsc,
+    required this.waktusc,
+    required this.imageUrl,
   });
 }
