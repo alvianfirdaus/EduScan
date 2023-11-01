@@ -57,7 +57,7 @@ TextStyle SafeGoogleFont(
     );
   } catch (ex) {
     return GoogleFonts.getFont(
-      "Source Sans Pro",
+      "Urbanist",
       textStyle: textStyle,
       color: color,
       backgroundColor: backgroundColor,
