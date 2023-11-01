@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/item.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/widgets/bottom_navbar.dart';
 
 class DetailKtp extends StatelessWidget {
   final Item item;
@@ -284,25 +285,7 @@ class DetailKtp extends StatelessWidget {
         ),
       ),
       // Tambahkan navigation bar di bagian bawah
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.home),
-              onPressed: () {
-                // Navigasi ke halaman utama
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: () {
-                // Navigasi ke halaman pengaturan
-              },
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

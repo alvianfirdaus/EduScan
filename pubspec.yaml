@@ -65,40 +65,7 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - assets/images/uil-setting.png
-    - assets/images/iconly-regular-outline-arrow-left.png
-    - assets/images/iconly-regular-outline-arrow-left-EZv.png
-    - assets/images/uil-setting-qsv.png
-    - assets/images/mdi-about-circle-outline.png
-    - assets/images/menu-3.png
-    - assets/images/gg-profile.png
-    - assets/images/uil-setting-vXz.png
-    - assets/images/iconly-regular-outline-arrow-left-u5a.png
-    - assets/images/li-clock.png
-    - assets/images/mask-group.png
-    - assets/images/vector.png
-    - assets/images/menu-3-ym2.png
-    - assets/images/image-2-CbA.png
-    - assets/images/li-clock-qfv.png
-    - assets/images/menu-3-kH6.png
-    - assets/images/li-clock-fB6.png
-    - assets/images/blue-geometric-initial-s-express-logo-1-74U.png
-    - assets/images/uil-setting-eaC.png
-    - assets/images/iconly-regular-outline-arrow-left-bEY.png
-    - assets/images/blue-geometric-initial-s-express-logo-1-T9S.png
-    - assets/images/li-clock-Dk4.png
-    - assets/images/image-2-urx.png
-    - assets/images/pexels-photo-by-alex-garcia.png
-    - assets/images/vuesax-bold-scan.png
-    - assets/images/li-clock-Py2.png
-    - assets/images/humbleicons-logout.png
-    - assets/images/menu-3-5Pv.png
-    - assets/images/ep-arrow-up.png
-    - assets/images/uil-setting-pBi.png
-    - assets/images/ep-arrow-up-QzU.png
-    - assets/images/blue-geometric-initial-s-express-logo-1-Yat.png
-    - assets/images/blue-geometric-initial-s-express-logo-1-Nbr.png
-    - assets/images/mask-group-ivc.png
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
