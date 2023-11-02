@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/pages/settings.dart';
 
 class BottomApp extends StatelessWidget {
   const BottomApp({
@@ -42,7 +43,15 @@ class BottomApp extends StatelessWidget {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.settings, color: Colors.white, size: 26),
-                onPressed: () {},
+                onPressed: () {
+                  // Navigasi ke halaman settings.dart saat tombol "Pengaturan" ditekan
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Settings()), // Sesuaikan dengan nama halaman settings.dart
+                  );
+                },
               ),
               Text(
                 'Pengaturan',
