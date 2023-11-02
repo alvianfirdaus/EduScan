@@ -48,7 +48,7 @@ class _SettingsState extends State<Settings> {
         ),
         buildSettingItem(
           'Profile',
-          'assets/images/gg-profile.png',                                                                     
+          'assets/images/healthicons-ui-user-profile-4iL.png',                                                                     
           '/profile'
         ),
         buildSettingItem(

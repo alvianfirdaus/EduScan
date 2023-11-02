@@ -1,3 +1,4 @@
+import 'package:myapp/pages/logout.dart';
 import 'package:myapp/pages/page_sign_up.dart';
 import 'package:myapp/pages/page_sign_in.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import '../pages/detail_ktp.dart';
 import '../pages/splashscreen.dart';
 import '../data/data_detail.dart';
 import '../models/item.dart';
+import '../pages/tentang_kami.dart';
 
 class Routes {
   static const String splash = '/';
@@ -21,20 +23,25 @@ class Routes {
   static const String signUp = '/sign_up';
   static const String setting = '/setting';
   static const String profile= '/profile';
-
-  static const String appNavigationScreen = '/app_navigation_screen';
+  static const String aboutUs= '/about_us';
+  static const String logout = '/logout';
+  
 
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => SplashScreen(),
     signUp: (context) => pageSignUp(),
     signIn: (context) => pageSignIn(),
+
     riwayat: (context) => HistoryV(),
     detail_riwayat: (context) => ModalRiwayat(),
+
     scan: (context) => ScanState(),
-    
-    //detail_scan: (context) => DetailKtp(item: item,),
+    detail_scan: (context) => DetailKtp(item: InitialData.items[0],),
+
     setting: (context) => Settings(),
     profile: (context) => ProfilePage(),
-    //appNavigationScreen: (context) => AppNavigationScreen()
+    aboutUs: (context) => TentangKami(),
+    logout: (context) => LogoutPage(),
+
   };
 }
