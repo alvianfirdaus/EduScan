@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/routes/route.dart';
 
 class FloatingButtonBar extends StatelessWidget {
   const FloatingButtonBar({
@@ -8,7 +9,9 @@ class FloatingButtonBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton( 
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, Routes.scan);
+      },
       child: Icon(Icons.camera_alt_outlined),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/pages/settings.dart';
+import 'package:myapp/routes/route.dart';
 
 class BottomApp extends StatelessWidget {
   const BottomApp({
@@ -23,7 +24,9 @@ class BottomApp extends StatelessWidget {
               IconButton(
                 icon:
                     Icon(Icons.history_outlined, color: Colors.white, size: 27),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.riwayat);
+                },
               ),
               Text(
                 'Riwayat',

@@ -32,7 +32,7 @@ class InitialData {
       berlaku: '5 Tahun',
       tanggalsc: '06/30/2024',
       waktusc: '14:15',
-      imageUrl: 'assets/images/n.png',
+      imageUrl: 'assets/images/mask-group.png',
     ),
     Item(
       nik: '55555555555555',
@@ -48,7 +48,7 @@ class InitialData {
       berlaku: '10 Tahun',
       tanggalsc: '12/30/2025',
       waktusc: '11:30',
-      imageUrl: 'assets/images/maria.png',
+      imageUrl: 'assets/images/mask-group.png',
     ),
     Item(
       nik: '55555555555555',
@@ -64,7 +64,7 @@ class InitialData {
       berlaku: '10 Tahun',
       tanggalsc: '12/30/2025',
       waktusc: '11:30',
-      imageUrl: 'assets/images/maria.png',
+      imageUrl: 'assets/images/mask-group.png',
     ),
   ];
 }

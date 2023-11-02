@@ -1,8 +1,16 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:myapp/routes/route.dart';
 import 'package:myapp/widgets/bottom_appbar.dart';
 import 'package:myapp/widgets/floating_button_appbar.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
+  @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,20 +44,23 @@ class Settings extends StatelessWidget {
         buildSettingItem(
           'Tentang Kami',
           'assets/images/mdi-about-circle-outline.png',
+          '/about_us'
         ),
         buildSettingItem(
           'Profile',
-          'assets/images/gg-profile.png',
+          'assets/images/gg-profile.png',                                                                     
+          '/profile'
         ),
         buildSettingItem(
           'Keluar',
           'assets/images/humbleicons-logout.png',
+          '/logout'
         ),
       ],
     );
   }
 
-  Widget buildSettingItem(String title, String iconAsset) {
+  Widget buildSettingItem(String title, String iconAsset, String route) {
     return ListTile(
       leading: Image.asset(
         iconAsset,
@@ -64,7 +75,9 @@ class Settings extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, route);
+      },
     );
   }
 }

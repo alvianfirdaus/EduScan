@@ -6,12 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/widgets/bottom_appbar.dart';
 
 
-class ScanState extends StatefulWidget {
-  @override
-  _ScanState createState() => _ScanState();
-}
-
-class _ScanState extends State<ScanState> {
+class ScanState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
