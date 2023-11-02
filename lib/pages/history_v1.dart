@@ -16,9 +16,7 @@ class HistoryV extends StatelessWidget {
         leading: IconButton(
           icon: Image.asset(
               'assets/images/iconly-regular-outline-arrow-left.png'),
-          onPressed: () {
-            // Add your navigation logic here (e.g., go back)
-          },
+          onPressed: () {},
         ),
         title: Text(
           'Riwayat',

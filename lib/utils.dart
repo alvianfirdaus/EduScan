@@ -80,3 +80,15 @@ TextStyle SafeGoogleFont(
     );
   }
 }
+
+double fem = 1.0;
+
+Widget buildInfoRowWithSizedBox(String label, String value) {
+  return Row(
+    children: [
+      Text(label),
+      SizedBox(width: 8),
+      Text(value),
+    ],
+  );
+}

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:myapp/models/item.dart';
 import 'package:myapp/data/data_detail.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/pages/riwayatmodal.dart';
 
 class CardWidget extends StatelessWidget {
-  // const CardWidget({super.key});
   final List<Item> items;
 
   const CardWidget({required this.items});
@@ -20,7 +20,7 @@ class CardWidget extends StatelessWidget {
         itemCount: items.length,
         itemBuilder: (context, index) {
           final item = items[index];
-          return ItemCard(item: item, context: context);
+          return ItemCard(item: item);
         },
       ),
     );
@@ -29,9 +29,8 @@ class CardWidget extends StatelessWidget {
 
 class ItemCard extends StatelessWidget {
   final Item item;
-  final BuildContext context;
 
-  const ItemCard({required this.item, required this.context});
+  const ItemCard({required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,6 @@ class ItemCard extends StatelessWidget {
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(8),
-          // Tambahkan padding pada keseluruhan Card
           child: Stack(
             alignment: Alignment.centerRight,
             children: [
@@ -81,9 +79,9 @@ class ItemCard extends StatelessWidget {
                             color: Color(0xff808080),
                           ),
                         ),
-                        SizedBox(width: 8), // Menambahkan jarak horizontal
+                        SizedBox(width: 8),
                         Text(
-                          item.waktusc, // Teks yang ingin Anda tambahkan
+                          item.waktusc,
                           style: SafeGoogleFont(
                             'Urbanist',
                             fontSize: 16,
@@ -100,13 +98,12 @@ class ItemCard extends StatelessWidget {
                 right: 10,
                 child: GestureDetector(
                   onTap: () {
-                    // Tambahkan logika yang ingin Anda jalankan saat ikon panah diklik
+                    _showDetailDialog(context);
                   },
                   child: Image.asset(
-                    'assets/images/ep-arrow-up.png', // Gantilah dengan path gambar ikon panah Anda
-                    width: 24, // Sesuaikan lebar gambar ikon
+                    'assets/images/ep-arrow-up.png',
+                    width: 24,
                     height: 24,
-                    // Sesuaikan tinggi gambar ikon
                   ),
                 ),
               ),
@@ -114,6 +111,122 @@ class ItemCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _showDetailDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Positioned(
+          left: 32 * fem,
+          top: 100 * fem,
+          child: Align(
+            child: SizedBox(
+              width: 297 * fem,
+              height: 560 * fem,
+              child: SingleChildScrollView(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8 * fem),
+                    color: Color(0xffffffff),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        color: Colors.blue, // Warna latar belakang biru
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Detail',
+                            style: TextStyle(
+                              color: Colors.white, // Warna teks putih
+                              fontSize:
+                                  20.0, // Sesuaikan ukuran font sesuai kebutuhan
+                            ),
+                          ),
+                        ),
+                      ),
+                      buildInfoRowWithSizedBox('', ''),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 *
+                                fem), // Tambahkan margin bawah dan margin kanan
+                        child:
+                            buildInfoRowWithSizedBox('NIK', '3275080803030018'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox('Nama', 'Peter Chen'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox(
+                            'Tempat/Tgl Lahir', 'Cellengenge, 25-10-1972'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox(
+                            'Tempat/Tgl Lahir', 'Cellengenge, 25-10-1972'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox(
+                            'Jenis Kelamin', 'Laki-laki'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox('Gol. Darah', 'O'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox(
+                            'Alamat', 'JL. MERDEKA NO.43 RT 001/004'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox('Agama', 'Islam'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox(
+                            'Status Perkawinan', 'Kawin'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox(
+                            'Pekerjaan', 'Pegawai Negeri Sipil'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child:
+                            buildInfoRowWithSizedBox('Kewarganegaraan', 'WNI'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: 8 * fem), // Tambahkan margin bawah
+                        child: buildInfoRowWithSizedBox(
+                            'Berlaku Hingga', 'Seumur Hidup'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

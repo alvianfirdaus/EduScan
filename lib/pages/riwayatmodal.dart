@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
-class Scene extends StatelessWidget {
+class ModalRiwayat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 360;
@@ -206,55 +206,6 @@ class Scene extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 30 * fem,
-              top: 100 * fem,
-              child: Container(
-                width: 300 * fem,
-                height: 51 * fem,
-                decoration: BoxDecoration(
-                  color: Color(0xff03a1fe),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10 * fem),
-                    topRight: Radius.circular(10 * fem),
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    'Detail',
-                    style: TextStyle(
-                      fontSize: 20 * ffem,
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xffffffff),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 29 * fem,
-              top: 655 * fem,
-              child: Align(
-                child: SizedBox(
-                  width: 308 * fem,
-                  height: 128 * fem,
-                  child: Image.asset('assets/naresh/images/image-3.png',
-                      fit: BoxFit.cover),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 0 * fem,
-              top: 1 * fem,
-              child: Align(
-                child: SizedBox(
-                  width: 360 * fem,
-                  height: 99 * fem,
-                  child: Image.asset('assets/naresh/images/image-4.png',
-                      fit: BoxFit.cover),
                 ),
               ),
             ),
