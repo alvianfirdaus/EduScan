@@ -128,27 +128,26 @@ class ItemCard extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8 * fem),
                     color: Color(0xffffffff),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        color: Colors.blue, // Warna latar belakang biru
+                        color: Colors.blue,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Detail',
-                            style: TextStyle(
-                              color: Colors.white, // Warna teks putih
-                              fontSize:
-                                  20.0, // Sesuaikan ukuran font sesuai kebutuhan
+                          child: Center(
+                            child: Text(
+                              'Detail',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      buildInfoRowWithSizedBox('', ''),
                       Padding(
                         padding: EdgeInsets.only(
                             left: 8 *
