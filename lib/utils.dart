@@ -84,11 +84,19 @@ TextStyle SafeGoogleFont(
 double fem = 1.0;
 
 Widget buildInfoRowWithSizedBox(String label, String value) {
-  return Row(
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisSize: MainAxisSize.min, // Mengurangi jarak antara label dan value
     children: [
-      Text(label),
-      SizedBox(width: 8),
-      Text(value),
+      Text(
+        label,
+        style: SafeGoogleFont('Urbanist', fontSize: 16, color: Colors.black),
+      ),
+      SizedBox(height: 2), // Ubah sesuai kebutuhan
+      Text(
+        value,
+        style: SafeGoogleFont('Urbanist', fontSize: 16, color: Colors.grey),
+      ),
     ],
   );
 }
