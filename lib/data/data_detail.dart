@@ -20,7 +20,7 @@ class InitialData {
     ),
     Item(
       nik: '12345678901234',
-      nama: 'John Doe',
+      nama: 'Joh Doe',
       ttl: 'Jakarta, 01-01-1990',
       jenisKelamin: 'Laki-laki',
       golDarah: 'A',
