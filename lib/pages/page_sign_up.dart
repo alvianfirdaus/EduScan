@@ -1,6 +1,7 @@
 import 'package:myapp/routes/route.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/widgets/custom_field_text.dart';
+import 'package:myapp/widgets/custom_text_style.dart';
 
 class pageSignUp extends StatelessWidget {
    pageSignUp({
@@ -25,16 +26,14 @@ class pageSignUp extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 30),
-                child: const Text(
-                  'Selamat Datang di EduScan',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 23,
-                  ),
-                ),
+                child: CustomTextStyle(
+                  text :'Selamat Datang di EduScan',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 23,
+                  ), 
               ),
               Container(
-                child: Text('Buat akun EduScan anda.'),
+                child: CustomTextStyle(text:'Buat akun EduScan anda.'),
               ),
               Container(
                 child: customTextField(
