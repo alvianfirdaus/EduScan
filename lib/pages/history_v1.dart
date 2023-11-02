@@ -6,6 +6,7 @@ import 'package:myapp/utils.dart';
 import 'package:myapp/widgets/bottom_appbar.dart';
 import 'package:myapp/widgets/floating_button_appbar.dart';
 import 'package:myapp/widgets/card_widgets.dart';
+import 'package:myapp/routes/route.dart';
 
 class HistoryV extends StatelessWidget {
   @override
@@ -16,7 +17,9 @@ class HistoryV extends StatelessWidget {
         leading: IconButton(
           icon: Image.asset(
               'assets/images/iconly-regular-outline-arrow-left.png'),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, Routes.splash);
+          },
         ),
         title: Text(
           'Riwayat',

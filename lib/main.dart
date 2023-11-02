@@ -7,9 +7,7 @@ import 'package:myapp/routes/route.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/',
-    routes: {
-      '/': (context) => HistoryV(), // Menggunakan data dari data.dart
-    },
+    initialRoute: Routes.splash, // Rute awal aplikasi
+      routes: Routes.routes, 
   ));
 }

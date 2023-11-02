@@ -20,7 +20,7 @@ class Routes {
   static const String appNavigationScreen = '/app_navigation_screen';
 
   static Map<String, WidgetBuilder> routes = {
-    splash: (context) => Splash(),
+    splash: (context) => SplashScreen(),
     signUp: (context) => pageSignUp(),
     signIn: (context) => pageSignIn(),
     riwayat: (context) => HistoryV(),

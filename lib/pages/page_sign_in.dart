@@ -56,7 +56,7 @@ class pageSignIn extends StatelessWidget {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, Routes.signIn);
+                    Navigator.pushNamed(context, Routes.riwayat);
                   },
                   style: ButtonStyle(
                     minimumSize: MaterialStatePropertyAll(Size(300, 50)),
