@@ -17,6 +17,7 @@ class InitialData {
       tanggalsc: '12/30/2023',
       waktusc: '09:41',
       imageUrl: 'assets/images/mask-group.png',
+      status: 'assets/images/yes.png',
     ),
     Item(
       nik: '12345678901234',
@@ -33,6 +34,7 @@ class InitialData {
       tanggalsc: '06/30/2024',
       waktusc: '14:15',
       imageUrl: 'assets/images/mask-group.png',
+      status: 'assets/images/nof.png',
     ),
     Item(
       nik: '55555555555555',
@@ -49,10 +51,11 @@ class InitialData {
       tanggalsc: '12/30/2025',
       waktusc: '11:30',
       imageUrl: 'assets/images/mask-group.png',
+      status: 'assets/images/yes.png',
     ),
     Item(
       nik: '55555555555555',
-      nama: 'lukas bacot',
+      nama: 'Edward Ritonga',
       ttl: 'Surabaya, 15-03-1985',
       jenisKelamin: 'Perempuan',
       golDarah: 'B',
@@ -65,6 +68,7 @@ class InitialData {
       tanggalsc: '12/30/2025',
       waktusc: '11:30',
       imageUrl: 'assets/images/mask-group.png',
+      status: 'assets/images/nof.png',
     ),
   ];
 }

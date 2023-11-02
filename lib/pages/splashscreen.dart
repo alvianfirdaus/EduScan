@@ -5,7 +5,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/routes/route.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Menunggu selama 5 detik dan kemudian melakukan navigasi ke halaman "Sign In"
+    Future.delayed(Duration(seconds: 5), () {
+      Navigator.pushNamed(context, Routes.signIn);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

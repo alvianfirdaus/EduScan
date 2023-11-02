@@ -57,15 +57,26 @@ class ItemCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      item.nama,
-                      style: SafeGoogleFont(
-                        'Urbanist',
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        height: 1.5999999728,
-                        color: Color(0xff4a4a4a),
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          item.nama,
+                          style: SafeGoogleFont(
+                            'Urbanist',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            height: 1.5999999728,
+                            color: Color(0xff4a4a4a),
+                          ),
+                        ),
+                        SizedBox(width: 16),
+                        // Add the verified icon image here
+                        Image.asset(
+                          (item.status), // Adjust the image path
+                          width: 20, // Adjust the size as needed
+                          height: 20,
+                        ),
+                      ],
                     ),
                     SizedBox(height: 16),
                     Row(

@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
           children: [
             // Profil picture
             SizedBox(height: 60, width: 1500),
-            Image(image: AssetImage('../assets/images/healthicons-ui-user-profile-4iL.png')),
+            Image(image: AssetImage('assets/images/healthicons-ui-user-profile-4iL.png')),
             SizedBox(height: 30),
 
             // Profil name

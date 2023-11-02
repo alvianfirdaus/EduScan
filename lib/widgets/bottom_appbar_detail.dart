@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/routes/route.dart';
 
 class BottomAppDetail extends StatelessWidget {
   const BottomAppDetail({
@@ -20,9 +21,11 @@ class BottomAppDetail extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               IconButton(
-                icon:
-                    Icon(Icons.camera_alt_outlined, color: Colors.white, size: 27),
-                onPressed: () {},
+                icon: Icon(Icons.camera_alt_outlined,
+                    color: Colors.white, size: 27),
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.scan);
+                },
               ),
               Text(
                 'Pindai Ulang',
@@ -41,8 +44,11 @@ class BottomAppDetail extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               IconButton(
-                icon: Icon(Icons.save_alt_outlined, color: Colors.white, size: 26),
-                onPressed: () {},
+                icon: Icon(Icons.save_alt_outlined,
+                    color: Colors.white, size: 26),
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.riwayat);
+                },
               ),
               Text(
                 'Simpan',

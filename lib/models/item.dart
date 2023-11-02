@@ -13,6 +13,7 @@ class Item {
   final String tanggalsc;
   final String waktusc;
   final String imageUrl;
+  final String status;
 
   Item({
     required this.nik,
@@ -29,5 +30,6 @@ class Item {
     required this.tanggalsc,
     required this.waktusc,
     required this.imageUrl,
+    required this.status,
   });
 }
