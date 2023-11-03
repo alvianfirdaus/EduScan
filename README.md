@@ -19,23 +19,27 @@
   <tr>
     <th>Alvian Nur Firdaus</th>
     <th>2141720022</th>
-    <th>Pembuatan Splash Screen </th>
+    <th>Pembuatan Splash Screen, Riwayat</th>
   </tr>
   <tr>
     <th>Devi Andini Febrianti</th>
     <th>2141720189</th>
+    <th>Scan, Profile</th>
   </tr>
   <tr>
     <th>Febrian Dani Ritonga</th>
     <th>2141720022</th>
+    <th>Setting, Detail Riwayat</th>
   </tr>
   <tr>
     <th>Naresh Pratista</th>
     <th>2141720057</th>
+    <th>About Us, Hasil Scan</th>
   </tr>
   <tr>
     <th>Zahra Anisa W</th>
     <th>2141720016</th>
+    <th>Register, Login</th>
   </tr>
 </table>
 
@@ -92,8 +96,8 @@ Berikut adalah Logo dan Makna Logo dari EduScan
     <th>Profil</th>
   </tr>
   <tr>
-    <th><img src="docs/depi2.png"></th>
-    <th><img src="docs/depi1.png"></th>
+    <th><img src="docs/scan.jpg"></th>
+    <th><img src="docs/Profile.jpg"></th>
   </tr>
 </table>
 
