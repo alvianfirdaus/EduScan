@@ -26,7 +26,7 @@ class LogoutPage extends StatelessWidget {
             'Urbanist',
             fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: Color(0xff4a4a4a),
           ),
         ),
       ),
@@ -35,12 +35,11 @@ class LogoutPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             
-            CustomTextStyle(text: 'Apakah Anda yakin ingin keluar dari aplikasi?', fontSize: 18,),
+            CustomTextStyle(text: 'Apakah Anda yakin ingin?', fontSize: 18, fontWeight: FontWeight.w600),
             SizedBox(height: 20,),
             ElevatedButton(
               onPressed: () {
-                // Keluar dari aplikasi
-                SystemNavigator.pop();
+                Navigator.pushNamed(context, Routes.signIn);
               },
               style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -49,7 +48,7 @@ class LogoutPage extends StatelessWidget {
                       ),
                     ),
                   ),
-              child: CustomTextStyle(text: 'Keluar', color: Colors.white, fontSize: 16,),
+              child: CustomTextStyle(text: 'Keluar', color: Colors.white, fontSize: 16),
             ),
           ],
         ),

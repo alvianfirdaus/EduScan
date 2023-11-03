@@ -43,9 +43,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 style: TextStyle(
                   fontFamily: 'Urbanist',
                   fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: const Color.fromARGB(
-                      255, 110, 110, 110), // Ganti warna teks sesuai kebutuhan
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xff4a4a4a), // Ganti warna teks sesuai kebutuhan
                 ),
               ),
             ],

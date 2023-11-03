@@ -11,61 +11,63 @@ class ScanState extends StatefulWidget {
 class _ScanState extends State<ScanState> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: CekrikButtonBar(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomApp(),
-      body: Stack(
-        children: [
-          Container(
-            width: 800,
-            height: 900,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(0),
-              image: DecorationImage(
-                image:
-                    AssetImage('assets/images/pexels-photo-by-alex-garcia.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Container(
-            width: 950,
-            height: 800,
-            child: Image.asset('assets/images/image-2.png', scale: 1.0),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(
-                  context, Routes.riwayat); // Navigasi ke halaman "Sign In"
-            },
-            child: Container(
-              child: Text(
-                'Scan',
-                style: TextStyle(
-                  fontSize: 25,
-                ),
-              ),
-              height: 60,
-              width: 1500,
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: CekrikButtonBar(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomApp(),
+        body: Stack(
+          children: [
+            Container(
+              width: 800,
+              height: 900,
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white54,
-                  width: 1,
-                ),
-                image: DecorationImage(
-                  image: AssetImage(
-                      'assets/images/iconly-regular-outline-arrow-left.png'),
-                  alignment: Alignment.centerLeft,
-                ),
                 borderRadius: BorderRadius.circular(0),
-                color: Colors.grey[200],
+                image: DecorationImage(
+                  image:
+                      AssetImage('assets/images/pexels-photo-by-alex-garcia.png'),
+                  fit: BoxFit.cover,
+                ),
               ),
-              padding: EdgeInsets.only(top: 10, bottom: 8),
-              alignment: Alignment.topCenter,
             ),
-          ),
-        ],
+            Container(
+              width: 950,
+              height: 800,
+              child: Image.asset('assets/images/image-2.png', scale: 1.0),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(
+                    context, Routes.riwayat); // Navigasi ke halaman "Sign In"
+              },
+              child: Container(
+                child: Text(
+                  'Scan',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                height: 60,
+                width: 1500,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.white54,
+                    width: 1,
+                  ),
+                  image: DecorationImage(
+                    image: AssetImage(
+                        'assets/images/iconly-regular-outline-arrow-left.png'),
+                    alignment: Alignment.centerLeft,
+                  ),
+                  borderRadius: BorderRadius.circular(0),
+                  color: Colors.grey[200],
+                ),
+                padding: EdgeInsets.only(top: 10, bottom: 8),
+                alignment: Alignment.topCenter,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

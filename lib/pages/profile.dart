@@ -28,7 +28,7 @@ class ProfilePage extends StatelessWidget {
             'Urbanist',
             fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: Color(0xff4a4a4a),
           ),
         ),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
@@ -52,7 +52,7 @@ class ProfilePage extends StatelessWidget {
                   'Urbanist',
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: Color(0xff4a4a4a),
                 ),
               ),
             ),
@@ -83,6 +83,7 @@ class ProfilePage extends StatelessWidget {
               child: CustomTextStyle(
                 text: 'Alamat Email',
                 fontWeight: FontWeight.w600,
+                color: Color(0xff4a4a4a),
                 ),
             ),
 
@@ -109,27 +110,6 @@ class ProfilePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class CustomIconButton extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final String route;
-
-  CustomIconButton(
-      {required this.icon, required this.label, required this.route});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: IconButton(
-        icon: Icon(icon, color: Colors.white, size: 27),
-        onPressed: () {
-          Navigator.pushNamed(context, route);
-        },
       ),
     );
   }

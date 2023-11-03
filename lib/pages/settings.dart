@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:myapp/routes/route.dart';
+import 'package:myapp/utils.dart';
 import 'package:myapp/widgets/bottom_appbar.dart';
 import 'package:myapp/widgets/floating_button_appbar.dart';
 
@@ -15,18 +16,20 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(
           'Pengaturan',
-          style: TextStyle(
+          style: SafeGoogleFont(
+            'Urbanist', 
             fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: Colors.black,
+            fontWeight: FontWeight.w600,
+            color: Color(0xff4a4a4a),
           ),
           textAlign: TextAlign.center,
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Color(0xff4a4a4a)),
       ),
       body: buildSettingsList(),
       bottomNavigationBar: BottomApp(),
@@ -72,7 +75,7 @@ class _SettingsState extends State<Settings> {
         style: TextStyle(
           fontSize: 20,
           fontFamily: 'Urbanist',
-          color: Colors.black,
+          color: Color(0xff4a4a4a),
         ),
       ),
       onTap: () {
