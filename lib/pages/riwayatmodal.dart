@@ -106,7 +106,7 @@ class ModalRiwayat extends StatelessWidget {
                       height: 810 * fem,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color(0x4c000000),
+                          color: Color(0xff4a4a4a),
                         ),
                       ),
                     ),
