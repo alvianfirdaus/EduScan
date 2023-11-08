@@ -73,7 +73,6 @@ Berikut adalah Logo dan Makna Logo dari EduScan
 
 >**Alvian Nur Firdaus**<p>
 >- Detail Jobdesk : Pembuatan Splash Screen dan Riwayat
->- Link Repository : [Repository Alvian (klik)](https://github.com/alvianfirdaus/2141720022-mobile-2023/tree/main/week-09/src/UTS)
 
 <table>
   <tr>
@@ -81,14 +80,13 @@ Berikut adalah Logo dan Makna Logo dari EduScan
     <th>Riwayat</th>
   </tr>
   <tr>
-    <th><img src="docs/alpro2.PNG"></th>
-    <th><img src="docs/alpro1.PNG"></th>
+    <th><img src="docs/splash.jpeg"></th>
+    <th><img src="docs/riwayat.jpeg"></th>
   </tr>
 </table>
 
 >**Devi Andini Febrianti**<p>
->- Detail Jobdesk : Pembuatan Scanner dan Riwayat
->- Link Repository : [Devi Andini (klik)](https://github.com/deviandinifebrianti/2141720189-Mobile-2023/tree/main/ocr_ktp)
+>- Detail Jobdesk : Pembuatan Scanner dan Profile
 
 <table>
   <tr>
@@ -96,14 +94,13 @@ Berikut adalah Logo dan Makna Logo dari EduScan
     <th>Profil</th>
   </tr>
   <tr>
-    <th><img src="docs/scan.jpg"></th>
-    <th><img src="docs/Profile.jpg"></th>
+    <th><img src="docs/scan.jpeg"></th>
+    <th><img src="docs/profile.jpeg"></th>
   </tr>
 </table>
 
 >**Febrian Dani Ritonga**<p>
 >- Detail Jobdesk : Pembuatan Detail Riwayat dan Setting
->- Link Repository : [Repository Febrian (klik)](https://github.com/daniertg/2141720070-mobile-2023/tree/master/UTS)
 
 <table>
   <tr>
@@ -111,14 +108,13 @@ Berikut adalah Logo dan Makna Logo dari EduScan
     <th>Settings</th>
   </tr>
   <tr>
-    <th><img src="docs/Detail_KTP.png"></th>
-    <th><img src="docs/settings.png"></th>
+    <th><img src="docs/detail.jpeg"></th>
+    <th><img src="docs/settings.jpeg"></th>
   </tr>
 </table>
 
 >**Naresh Pratista**<p>
 >- Detail Jobdesk : Data hasil Scan dan about us
->- Link Repository : [Naresh (klik)](https://github.com/NareshPratista28/2141720057-mobile-2023/tree/main/UTS)
 
 <table>
   <tr>
@@ -126,14 +122,13 @@ Berikut adalah Logo dan Makna Logo dari EduScan
     <th>About us</th>
   </tr>
   <tr>
-    <th><img src="docs/n.PNG"></th>
-    <th><img src="docs/tentang_kami.PNG"></th>
+    <th><img src="docs/detail.jpeg"></th>
+    <th><img src="docs/tentang.jpeg"></th>
   </tr>
 </table>
 
 >**Zahra Anisa Wahono**<p>
 >- Detail Jobdesk : Pembuatan Register dan Login
->- Link Repository : [Zahra Anisa (klik)](https://github.com/zhrnnsw/2141720016-mobile-2023/tree/main/week-9/src/eduscan)
 
 <table>
   <tr>
@@ -141,8 +136,8 @@ Berikut adalah Logo dan Makna Logo dari EduScan
     <th>Login</th>
   </tr>
   <tr>
-    <th><img src="docs/zahraregister1.jpg"></th>
-    <th><img src="docs/zahralogin1.jpg"></th>
+    <th><img src="docs/daftar.jpeg"></th>
+    <th><img src="docs/login.jpeg"></th>
   </tr>
 </table>
 
