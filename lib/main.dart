@@ -8,6 +8,6 @@ import 'package:myapp/routes/route.dart';
 void main() {
   runApp(MaterialApp(
     initialRoute: Routes.splash, // Rute awal aplikasi
-      routes: Routes.routes, 
+    routes: Routes.routes,
   ));
 }

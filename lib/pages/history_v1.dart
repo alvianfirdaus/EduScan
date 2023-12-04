@@ -27,7 +27,7 @@ class HistoryV extends StatelessWidget {
             'Urbanist',
             fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: Color(0xff4a4a4a),
           ),
         ),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
