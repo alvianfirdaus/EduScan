@@ -34,21 +34,26 @@ class LogoutPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            
-            CustomTextStyle(text: 'Apakah Anda yakin ingin?', fontSize: 18, fontWeight: FontWeight.w600),
-            SizedBox(height: 20,),
+            CustomTextStyle(
+                text: 'Apakah Anda yakin ingin keluar?',
+                fontSize: 18,
+                fontWeight: FontWeight.w600),
+            SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, Routes.signIn);
               },
               style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
                   ),
-              child: CustomTextStyle(text: 'Keluar', color: Colors.white, fontSize: 16),
+                ),
+              ),
+              child: CustomTextStyle(
+                  text: 'Iya', color: Colors.white, fontSize: 16),
             ),
           ],
         ),

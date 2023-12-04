@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:myapp/routes/route.dart';
 import 'package:myapp/utils.dart';
@@ -20,7 +18,7 @@ class _SettingsState extends State<Settings> {
         title: Text(
           'Pengaturan',
           style: SafeGoogleFont(
-            'Urbanist', 
+            'Urbanist',
             fontSize: 20,
             fontWeight: FontWeight.w600,
             color: Color(0xff4a4a4a),
@@ -44,21 +42,12 @@ class _SettingsState extends State<Settings> {
     return ListView(
       padding: EdgeInsets.all(10),
       children: [
+        buildSettingItem('Tentang Kami',
+            'assets/images/mdi-about-circle-outline.png', '/about_us'),
+        buildSettingItem('Profile',
+            'assets/images/healthicons-ui-user-profile-4iL.png', '/profile'),
         buildSettingItem(
-          'Tentang Kami',
-          'assets/images/mdi-about-circle-outline.png',
-          '/about_us'
-        ),
-        buildSettingItem(
-          'Profile',
-          'assets/images/healthicons-ui-user-profile-4iL.png',                                                                     
-          '/profile'
-        ),
-        buildSettingItem(
-          'Keluar',
-          'assets/images/humbleicons-logout.png',
-          '/logout'
-        ),
+            'Keluar', 'assets/images/humbleicons-logout.png', '/logout'),
       ],
     );
   }
