@@ -15,31 +15,27 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leading: IconButton(
-          icon: Image.asset(
-              'assets/images/iconly-regular-outline-arrow-left.png'),
-          onPressed: () {
-            Navigator.pushNamed(context, Routes.setting);
-          },
-        ),
         title: Text(
           'Profile',
           style: SafeGoogleFont(
             'Urbanist',
             fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: Color(0xff4a4a4a),
+            color: Color(0xffffffff),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Color(0xff03a1fe),
         centerTitle: true,
+        iconTheme: IconThemeData(color: Color(0xffffffff)),
       ),
       body: Center(
         child: Column(
           children: [
             // Profil picture
             SizedBox(height: 60, width: 1500),
-            Image(image: AssetImage('assets/images/healthicons-ui-user-profile-4iL.png')),
+            Image(
+                image: AssetImage(
+                    'assets/images/healthicons-ui-user-profile-4iL.png')),
             SizedBox(height: 30),
 
             // Profil name
@@ -60,7 +56,9 @@ class ProfilePage extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(top: 10, bottom: 15, left: 13),
               alignment: Alignment.centerLeft,
-              child: CustomTextStyle(text: 'Alvian Nur Firdaus',),
+              child: CustomTextStyle(
+                text: 'Alvian Nur Firdaus',
+              ),
             ),
 
             Container(
@@ -84,7 +82,7 @@ class ProfilePage extends StatelessWidget {
                 text: 'Alamat Email',
                 fontWeight: FontWeight.w600,
                 color: Color(0xff4a4a4a),
-                ),
+              ),
             ),
 
             Container(
@@ -92,8 +90,7 @@ class ProfilePage extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: CustomTextStyle(
                 text: 'alviannurfirdaus@gmail.com',
-
-                ),
+              ),
             ),
 
             Container(
