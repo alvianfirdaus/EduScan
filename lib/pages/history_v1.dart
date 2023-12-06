@@ -14,13 +14,6 @@ class HistoryV extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leading: IconButton(
-          icon: Image.asset(
-              'assets/images/iconly-regular-outline-arrow-left.png'),
-          onPressed: () {
-            Navigator.pushNamed(context, Routes.splash);
-          },
-        ),
         title: Text(
           'Riwayat',
           style: SafeGoogleFont(
