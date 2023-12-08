@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:myapp/routes/route.dart';
 import 'providers/splash_screen/splash_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => SplashProvider(),
+  runApp(ProviderScope(
     child: MyApp(),
   ));
 }

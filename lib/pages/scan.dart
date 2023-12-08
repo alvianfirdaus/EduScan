@@ -1,21 +1,30 @@
+import 'dart:io';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/providers/scan_provider.dart';
 import 'package:myapp/routes/route.dart';
 import 'package:myapp/widgets/cekrik.dart';
 import 'package:myapp/widgets/bottom_appbar.dart';
 
-class ScanState extends StatefulWidget {
+class ScanState extends ConsumerStatefulWidget {
   @override
-  _ScanState createState() => _ScanState();
+  ConsumerState<ScanState> createState() => _ScanState();
 }
 
-class _ScanState extends State<ScanState> {
+class _ScanState extends ConsumerState<ScanState> {
   List<CameraDescription> cameras = [];
+  late File capturedImage;
+
+  var cameraController;
 
   Future<Widget> initializeAndDisplayCamera() async {
     try {
+      // Mengambil daftar kamera yang tersedia
+      // List<CameraDescription> cameras = await availableCameras();
+
       // Menginisialisasi CameraController
-      final cameraController = CameraController(
+      cameraController = CameraController(
         cameras[0],
         ResolutionPreset.medium,
       );
@@ -32,6 +41,39 @@ class _ScanState extends State<ScanState> {
     }
   }
 
+  void onTakePicture() async {
+    try {
+      // List<CameraDescription> cameras = await availableCameras();
+
+      // // Menginisialisasi CameraController
+      // var cameraController = CameraController(
+      //   cameras[0],
+      //   ResolutionPreset.medium,
+      // );
+
+      // // Menginisialisasi controller dan menunggu inisialisasi selesai
+      // await cameraController.initialize();
+      // Ambil gambar
+      XFile xFile = await cameraController.takePicture();
+
+      if (mounted) {
+        final notifier = ref.read(scanProvider.notifier);
+        capturedImage = File(xFile.path);
+
+        notifier.updateCapturedImage(capturedImage);
+
+        print('sukses: $capturedImage');
+        Navigator.pushNamed(context, Routes.detail_scan,
+            arguments: capturedImage);
+
+        setState(() {});
+      }
+    } catch (e) {
+      print("Kesalahan saat mengambil gambar: $e");
+      // Lakukan tindakan yang sesuai jika terjadi kesalahan
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +82,8 @@ class _ScanState extends State<ScanState> {
       setState(() {
         cameras = value;
       });
+
+      initializeAndDisplayCamera();
     });
   }
 
@@ -62,7 +106,14 @@ class _ScanState extends State<ScanState> {
           backgroundColor: Color(0xff03a1fe),
           automaticallyImplyLeading: false,
         ),
-        floatingActionButton: CekrikButtonBar(),
+        floatingActionButton: CekrikButtonBar(
+          onPressed: () {
+            onTakePicture();
+            print("SUKSES");
+            Navigator.pushNamed(context, Routes.detail_scan,
+                arguments: capturedImage);
+          },
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomApp(),
         body: Stack(
@@ -124,7 +175,6 @@ class _ScanState extends State<ScanState> {
                 )
               ],
             ),
-            
           ],
         ),
       ),

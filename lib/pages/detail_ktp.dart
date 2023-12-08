@@ -1,15 +1,27 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/models/item.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/widgets/bottom_appbar_detail.dart';
+import 'package:myapp/providers/scan_provider.dart';
 
-class DetailKtp extends StatelessWidget {
+class DetailKtp extends ConsumerStatefulWidget {
   final Item item;
 
   const DetailKtp({Key? key, required this.item}) : super(key: key);
 
   @override
+  ConsumerState<DetailKtp> createState() => _DetailKtpState();
+}
+
+class _DetailKtpState extends ConsumerState<DetailKtp> {
+  @override
   Widget build(BuildContext context) {
+    final capturedFile = ref.watch(scanProvider);
+    print('captured image: $capturedFile');
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -41,7 +53,10 @@ class DetailKtp extends StatelessWidget {
                     decoration: const BoxDecoration(
                       color: Color(0xffffffff),
                     ),
-                    child: Image.asset('assets/images/ktp7-1-7Hr.png'),
+                    // child: Image.asset('assets/images/ktp7-1-7Hr.png'),
+                    child: kIsWeb
+                        ? Image.network(capturedFile!.path)
+                        : Image.file(capturedFile!),
                   ),
                 ),
               ),
@@ -70,7 +85,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.nik,
+                    widget.item.nik,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -90,7 +105,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.nama,
+                    widget.item.nama,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -110,7 +125,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.ttl,
+                    widget.item.ttl,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -130,7 +145,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.jenisKelamin,
+                    widget.item.jenisKelamin,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -150,7 +165,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.golDarah,
+                    widget.item.golDarah,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -170,7 +185,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.alamat,
+                    widget.item.alamat,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -190,7 +205,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.agama,
+                    widget.item.agama,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -210,7 +225,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.kawin,
+                    widget.item.kawin,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -230,7 +245,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.pekerjaan,
+                    widget.item.pekerjaan,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -250,7 +265,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.kewarganegaraan,
+                    widget.item.kewarganegaraan,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -270,7 +285,7 @@ class DetailKtp extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    item.berlaku,
+                    widget.item.berlaku,
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
