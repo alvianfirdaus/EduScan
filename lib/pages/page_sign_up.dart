@@ -126,25 +126,28 @@ class _pageSignUpState extends State<pageSignUp> {
                     onSaved: (value) {
                       enteredPassword = value!;
                     },
+                    showVisibilityIcon:
+                        true, // Tampilkan ikon mata untuk input password
                   ),
                 ),
                 Container(
                   child: CustomTextField(
-                      label: 'Ulangi Password',
-                      hint: 'Masukkan Ulang Password',
-                      textInputType: TextInputType.visiblePassword,
-                      hiddenText: true,
-                      validator: (value) {
-                        if (value.isEmpty || value.length < 8) {
-                          return 'Password kurang dari 8 karakter';
-                          //} else if (value != enteredPassword) {
-                          //  return 'Password tidak sama';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        enteredPasswordRepeat = value!;
-                      }),
+                    label: 'Ulangi Password',
+                    hint: 'Masukkan Ulang Password',
+                    textInputType: TextInputType.visiblePassword,
+                    hiddenText: true,
+                    validator: (value) {
+                      if (value.isEmpty || value.length < 8) {
+                        return 'Password kurang dari 8 karakter';
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      enteredPasswordRepeat = value!;
+                    },
+                    showVisibilityIcon:
+                        true, // Tampilkan ikon mata untuk ulangi password juga
+                  ),
                 ),
                 ButtonBar(
                   alignment: MainAxisAlignment.center,
