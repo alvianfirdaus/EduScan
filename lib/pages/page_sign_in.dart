@@ -18,6 +18,38 @@ class _pageSignInState extends State<pageSignIn> {
   var enteredEmail = '';
   var enteredPassword = '';
 
+  Future<void> _showErrorDialog(String message) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Login Gagal',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          content: Text(
+            message,
+            style: TextStyle(fontSize: 16),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'OK',
+                style: TextStyle(
+                  color: Colors.blue, // Ubah warna teks menjadi biru
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _submit() async {
     final isValid = _formKey.currentState!.validate();
     if (!isValid) {
@@ -32,16 +64,11 @@ class _pageSignInState extends State<pageSignIn> {
       print("Login successful: ${userCredentials.user?.uid}");
       Navigator.pushNamed(context, Routes.riwayat);
     } on FirebaseAuthException catch (error) {
-      var message = 'Terjadi kesalahan, silahkan coba lagi';
-      if (error.message != null) {
-        message = error.message!;
+      var message = 'Username dan Password tidak sesuai';
+      if (error.code == 'wrong-password') {
+        message = 'Kata sandi dan password tidak sesuai';
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: Theme.of(context).errorColor,
-        ),
-      );
+      _showErrorDialog(message);
     } catch (error) {
       print(error);
     }
