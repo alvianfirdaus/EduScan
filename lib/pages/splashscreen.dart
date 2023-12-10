@@ -16,8 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     // Menunggu selama 5 detik dan kemudian melakukan navigasi ke halaman "Sign In"
-    Future.delayed(Duration(seconds: 5), () {
-      Navigator.pushNamed(context, Routes.signIn);
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushNamed(context, Routes.OnboardingContent);
     });
   }
 
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: GestureDetector(
         onTap: () {
           Navigator.pushNamed(
-              context, Routes.signIn); // Navigasi ke halaman sign-in
+              context, Routes.OnboardingContent); // Navigasi ke halaman sign-in
         },
         child: Center(
           child: Column(

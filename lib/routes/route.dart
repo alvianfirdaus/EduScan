@@ -12,6 +12,7 @@ import '../pages/splashscreen.dart';
 import '../data/data_detail.dart';
 import '../models/item.dart';
 import '../pages/tentang_kami.dart';
+import '../pages/onboard_screen.dart';
 
 class Routes {
   static const String splash = '/';
@@ -22,26 +23,25 @@ class Routes {
   static const String signIn = '/sign_in';
   static const String signUp = '/sign_up';
   static const String setting = '/setting';
-  static const String profile= '/profile';
-  static const String aboutUs= '/about_us';
+  static const String profile = '/profile';
+  static const String aboutUs = '/about_us';
   static const String logout = '/logout';
-  
+  static const String OnboardingContent = '/onboard';
 
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => SplashScreen(),
+    OnboardingContent: (context) => OnboardingScreen(),
     signUp: (context) => pageSignUp(),
     signIn: (context) => pageSignIn(),
-
     riwayat: (context) => HistoryV(),
     detail_riwayat: (context) => ModalRiwayat(),
-
     scan: (context) => ScanState(),
-    detail_scan: (context) => DetailKtp(item: InitialData.items[0],),
-
+    detail_scan: (context) => DetailKtp(
+          item: InitialData.items[0],
+        ),
     setting: (context) => Settings(),
     profile: (context) => ProfilePage(),
     aboutUs: (context) => TentangKami(),
     logout: (context) => LogoutPage(),
-
   };
 }
