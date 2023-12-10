@@ -81,7 +81,7 @@ class _pageSignUpState extends State<pageSignUp> {
                   child: CustomTextStyle(text: 'Buat akun EduScan anda.'),
                 ),
                 Container(
-                  child: customTextField(
+                  child: CustomTextField(
                     label: 'Nama Lengkap',
                     hint: 'Masukkan Nama Lengkap',
                     textInputType: TextInputType.name,
@@ -97,7 +97,7 @@ class _pageSignUpState extends State<pageSignUp> {
                   ),
                 ),
                 Container(
-                  child: customTextField(
+                  child: CustomTextField(
                       label: 'Email',
                       hint: 'Masukkan Email',
                       textInputType: TextInputType.emailAddress,
@@ -112,7 +112,7 @@ class _pageSignUpState extends State<pageSignUp> {
                       }),
                 ),
                 Container(
-                  child: customTextField(
+                  child: CustomTextField(
                     label: 'Password',
                     hint: 'Masukkan Password',
                     textInputType: TextInputType.visiblePassword,
@@ -129,7 +129,7 @@ class _pageSignUpState extends State<pageSignUp> {
                   ),
                 ),
                 Container(
-                  child: customTextField(
+                  child: CustomTextField(
                       label: 'Ulangi Password',
                       hint: 'Masukkan Ulang Password',
                       textInputType: TextInputType.visiblePassword,

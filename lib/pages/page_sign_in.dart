@@ -19,13 +19,12 @@ class _pageSignInState extends State<pageSignIn> {
   var enteredPassword = '';
 
   void _submit() async {
-   
     final isValid = _formKey.currentState!.validate();
     if (!isValid) {
       return;
     }
-     _formKey.currentState!.save();
-    
+    _formKey.currentState!.save();
+
     try {
       final userCredentials = await _firebaseAuth.signInWithEmailAndPassword(
           email: enteredEmail, password: enteredPassword);
@@ -78,23 +77,23 @@ class _pageSignInState extends State<pageSignIn> {
                 fontSize: 17,
               )),
               Container(
-                child: customTextField(
-                    label: 'Email',
-                    hint: 'Masukkan Email',
-                    textInputType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value.isEmpty || !value.contains('@')) {
-                        return 'Email tidak tidak valid';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      enteredEmail = value!;
+                child: CustomTextField(
+                  label: 'Email',
+                  hint: 'Masukkan Email',
+                  textInputType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value.isEmpty || !value.contains('@')) {
+                      return 'Email tidak valid';
                     }
-                     ),
+                    return null;
+                  },
+                  onSaved: (value) {
+                    enteredEmail = value!;
+                  },
+                ),
               ),
               Container(
-                child: customTextField(
+                child: CustomTextField(
                   label: 'Password',
                   hint: 'Masukkan Password',
                   textInputType: TextInputType.visiblePassword,
@@ -107,7 +106,9 @@ class _pageSignInState extends State<pageSignIn> {
                   },
                   onSaved: (value) {
                     enteredPassword = value!;
-                     },
+                  },
+                  showVisibilityIcon:
+                      true, // Tambahkan properti showVisibilityIcon
                 ),
               ),
               ButtonBar(
@@ -118,7 +119,7 @@ class _pageSignInState extends State<pageSignIn> {
                       print("email :$enteredEmail");
                       print("pw :$enteredPassword");
                       _submit();
-                    // Navigator.pushNamed(context, Routes.riwayat);
+                      // Navigator.pushNamed(context, Routes.riwayat);
                     },
                     style: ButtonStyle(
                       minimumSize: MaterialStatePropertyAll(Size(300, 50)),
@@ -130,7 +131,8 @@ class _pageSignInState extends State<pageSignIn> {
                     ),
                     child: Text(
                       'Masuk',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
                 ],
@@ -143,7 +145,7 @@ class _pageSignInState extends State<pageSignIn> {
                     fontSize: 16,
                   ),
                 ),
-                ),
+              ),
               OutlinedButton(
                   style: ButtonStyle(
                       minimumSize: MaterialStatePropertyAll(Size(300, 50)),
@@ -153,13 +155,11 @@ class _pageSignInState extends State<pageSignIn> {
                             side: BorderSide(color: Colors.blue)),
                       )),
                   onPressed: () {
-                    
                     Navigator.pushNamed(context, Routes.signUp);
                   },
                   child: Text(
                     'Daftar',
-                  )
-                ),
+                  )),
             ],
           ),
         ),
