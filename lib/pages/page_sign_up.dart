@@ -13,7 +13,7 @@ class pageSignUp extends StatefulWidget {
 
   @override
   State<pageSignUp> createState() => _pageSignUpState();
-  }
+}
 
 class _pageSignUpState extends State<pageSignUp> {
   final _formKey = GlobalKey<FormState>();
@@ -23,7 +23,6 @@ class _pageSignUpState extends State<pageSignUp> {
   var enteredPasswordRepeat = '';
 
   void _submit() async {
-    
     final isValid = _formKey.currentState!.validate();
     if (!isValid) {
       return;
@@ -31,8 +30,7 @@ class _pageSignUpState extends State<pageSignUp> {
     _formKey.currentState!.save();
     try {
       final userCredentials =
-          await 
-          _firebaseAuth.createUserWithEmailAndPassword(
+          await _firebaseAuth.createUserWithEmailAndPassword(
               email: enteredEmail, password: enteredPassword);
       await userCredentials.user!.updateDisplayName(enteredName);
 
@@ -46,7 +44,8 @@ class _pageSignUpState extends State<pageSignUp> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),
-          backgroundColor: Theme.of(context).errorColor,),
+          backgroundColor: Theme.of(context).errorColor,
+        ),
       );
     } catch (error) {
       print(error);
@@ -81,7 +80,7 @@ class _pageSignUpState extends State<pageSignUp> {
                 child: CustomTextStyle(text: 'Buat akun EduScan anda.'),
               ),
               Container(
-                child: customTextField(
+                child: CustomTextField(
                   label: 'Nama Lengkap',
                   hint: 'Masukkan Nama Lengkap',
                   textInputType: TextInputType.name,
@@ -97,7 +96,7 @@ class _pageSignUpState extends State<pageSignUp> {
                 ),
               ),
               Container(
-                child: customTextField(
+                child: CustomTextField(
                     label: 'Email',
                     hint: 'Masukkan Email',
                     textInputType: TextInputType.emailAddress,
@@ -112,7 +111,7 @@ class _pageSignUpState extends State<pageSignUp> {
                     }),
               ),
               Container(
-                child: customTextField(
+                child: CustomTextField(
                   label: 'Password',
                   hint: 'Masukkan Password',
                   textInputType: TextInputType.visiblePassword,
@@ -126,24 +125,28 @@ class _pageSignUpState extends State<pageSignUp> {
                   onSaved: (value) {
                     enteredPassword = value!;
                   },
+                  showVisibilityIcon:
+                      true, // Tampilkan ikon mata untuk input password
                 ),
               ),
               Container(
-                child: customTextField(
-                    label: 'Ulangi Password',
-                    hint: 'Masukkan Ulang Password',
-                    textInputType: TextInputType.visiblePassword, hiddenText: true,
-                    validator: (value) {
-                      if (value.isEmpty || value.length < 8) {
-                        return 'Password kurang dari 8 karakter';
-                        //} else if (value != enteredPassword) {
-                        //  return 'Password tidak sama';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      enteredPasswordRepeat = value!;
-                    }),
+                child: CustomTextField(
+                  label: 'Ulangi Password',
+                  hint: 'Masukkan Ulang Password',
+                  textInputType: TextInputType.visiblePassword,
+                  hiddenText: true,
+                  validator: (value) {
+                    if (value.isEmpty || value.length < 8) {
+                      return 'Password kurang dari 8 karakter';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    enteredPasswordRepeat = value!;
+                  },
+                  showVisibilityIcon:
+                      true, // Tampilkan ikon mata untuk ulangi password juga
+                ),
               ),
               ButtonBar(
                 alignment: MainAxisAlignment.center,
@@ -151,7 +154,7 @@ class _pageSignUpState extends State<pageSignUp> {
                   ElevatedButton(
                     onPressed: () {
                       _submit();
-                       //Navigator.pushNamed(context, Routes.signIn);
+                      //Navigator.pushNamed(context, Routes.signIn);
                     },
                     style: ButtonStyle(
                       minimumSize: MaterialStatePropertyAll(Size(300, 50)),
@@ -167,7 +170,7 @@ class _pageSignUpState extends State<pageSignUp> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
-                  ],
+                ],
               ),
               GestureDetector(
                 onTap: () {
