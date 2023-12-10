@@ -156,7 +156,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   //untuk tombol dapat pindah menuju Home Screen
 
                   if (_indexPage == onboard_data.length - 1) {
-                    Navigator.pushNamed(context, Routes.scan);
+                    Navigator.pushNamed(context, Routes.signIn);
                   }
 
                   // untuk pindah ke halaman selanjutnya
