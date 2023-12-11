@@ -29,21 +29,26 @@ class OnboardingContent extends StatelessWidget {
                 image,
                 width: 270,
               ),
-              const Spacer(),
+              const SizedBox(
+                height: 80,
+              ),
               Text(
                 title,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 30,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                 ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               Text(
                 description,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.grey,
-                  fontSize: 16,
+                  fontSize: 18,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -88,34 +93,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  IconButton(
+                  TextButton(
                     onPressed: () {
-                      _pageController.previousPage(
-                          duration: Duration(milliseconds: 300),
-                          curve: Curves.ease);
+                      Navigator.pushNamed(context, Routes.signIn);
                     },
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      size: 24,
+                    child: const Text(
+                      'Skip',
+                      style: TextStyle(
+                        color: Color(0xff4a4a4a),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        //untuk mengskip onboarding dan langsung ke home screen
-
-                        // Navigator.push(context,
-
-                        //     MaterialPageRoute(builder: (context) => HomeScreen));
-                      },
-                      child: const Text(
-                        'Skip',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 70, 187, 255),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400),
-                      ))
                 ],
               ),
             ),
@@ -130,9 +122,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 itemCount: onboard_data.length,
                 controller: _pageController,
                 itemBuilder: (context, index) => OnboardingContent(
-                    image: onboard_data[index].image,
-                    title: onboard_data[index].title,
-                    description: onboard_data[index].description),
+                  image: onboard_data[index].image,
+                  title: onboard_data[index].title,
+                  description: onboard_data[index].description,
+                ),
               ),
             ),
             Row(
@@ -149,28 +142,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ],
             ),
+            SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: const EdgeInsets.only(right: 40, left: 40),
               child: InkWell(
                 onTap: () {
-                  //untuk tombol dapat pindah menuju Home Screen
-
                   if (_indexPage == onboard_data.length - 1) {
                     Navigator.pushNamed(context, Routes.signIn);
-                  }
-
-                  // untuk pindah ke halaman selanjutnya
-
-                  _pageController.nextPage(
+                  } else {
+                    _pageController.nextPage(
                       duration: const Duration(milliseconds: 300),
-                      curve: Curves.ease);
+                      curve: Curves.ease,
+                    );
+                  }
                 },
                 child: Container(
                   width: double.infinity,
                   height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Color.fromARGB(255, 63, 136, 247),
+                    color: Color(0xff03a1fe),
                   ),
                   child: Center(
                     child: Text(
@@ -179,8 +172,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           : 'Next',
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),

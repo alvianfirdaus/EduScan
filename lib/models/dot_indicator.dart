@@ -16,9 +16,7 @@ class DotIndicator extends StatelessWidget {
         height: 10,
         width: 10,
         decoration: BoxDecoration(
-            color: isActive
-                ? const Color.fromARGB(255, 54, 152, 244)
-                : Colors.grey,
+            color: isActive ? const Color(0xff03a1fe) : Colors.grey,
             borderRadius: const BorderRadius.all(Radius.circular(12))),
       ),
     );

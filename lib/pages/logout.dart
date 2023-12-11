@@ -13,13 +13,6 @@ class LogoutPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         centerTitle: true,
-        leading: IconButton(
-          icon: Image.asset(
-              'assets/images/iconly-regular-outline-arrow-left.png'),
-          onPressed: () {
-            Navigator.pushNamed(context, Routes.setting);
-          },
-        ),
         title: Text(
           'Konfirmasi Keluar',
           style: SafeGoogleFont(
@@ -29,15 +22,21 @@ class LogoutPage extends StatelessWidget {
             color: Color(0xff4a4a4a),
           ),
         ),
+        iconTheme: IconThemeData(color: Color(0xff4a4a4a)),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomTextStyle(
-                text: 'Apakah Anda yakin ingin keluar?',
-                fontSize: 18,
-                fontWeight: FontWeight.w600),
+            Text(
+              'Apakah anda yakin ingin keluar?',
+              style: SafeGoogleFont(
+                'Urbanist',
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Color(0xff4a4a4a),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -46,14 +45,22 @@ class LogoutPage extends StatelessWidget {
                 Navigator.pushNamed(context, Routes.signIn);
               },
               style: ButtonStyle(
+                minimumSize: MaterialStatePropertyAll(Size(100, 40)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100),
                   ),
                 ),
               ),
-              child: CustomTextStyle(
-                  text: 'Iya', color: Colors.white, fontSize: 16),
+              child: Text(
+                'Iya',
+                style: SafeGoogleFont(
+                  'Urbanist',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ],
         ),

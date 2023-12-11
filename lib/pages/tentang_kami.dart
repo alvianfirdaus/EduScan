@@ -223,7 +223,7 @@ class TentangKami extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: SafeGoogleFont(
                     'Urbanist',
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: Color(0xff03a1fe),
                   ),
@@ -233,11 +233,11 @@ class TentangKami extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50.0),
                   child: Text(
-                    'Aplikasi ini kami buat untuk memenuhi tugas Ujian Tengah Semester',
+                    'Aplikasi ini kami buat untuk memenuhi tugas akhir dari mata kuliah Pemrograman Mobile.',
                     textAlign: TextAlign.center,
                     style: SafeGoogleFont(
                       'Urbanist',
-                      fontSize: 12,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Color(0xff808080),
                     ),

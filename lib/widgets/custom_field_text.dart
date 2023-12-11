@@ -37,9 +37,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: (widget.hiddenText ?? false) ? _isObscure : false,
         autofocus: true,
         style: TextStyle(
-          fontSize: 20,
-          color: Colors.black,
-          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          color: Color(0xff4a4a4a),
+          fontWeight: FontWeight.w400,
         ),
         keyboardType: widget.textInputType,
         validator: widget.validator as String? Function(String?)?,

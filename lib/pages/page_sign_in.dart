@@ -103,6 +103,9 @@ class _pageSignInState extends State<pageSignIn> {
                 text: 'Masuk ke akun Anda',
                 fontSize: 17,
               )),
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 child: CustomTextField(
                   label: 'Email',
@@ -137,6 +140,9 @@ class _pageSignInState extends State<pageSignIn> {
                   showVisibilityIcon:
                       true, // Tambahkan properti showVisibilityIcon
                 ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               ButtonBar(
                 alignment: MainAxisAlignment.center,
@@ -178,14 +184,22 @@ class _pageSignInState extends State<pageSignIn> {
                       minimumSize: MaterialStatePropertyAll(Size(300, 50)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                            side: BorderSide(color: Colors.blue)),
+                          borderRadius: BorderRadius.circular(100),
+                          side: BorderSide(
+                            width: 10.0,
+                            color: Color(0xff03a1fe),
+                          ),
+                        ),
                       )),
                   onPressed: () {
                     Navigator.pushNamed(context, Routes.signUp);
                   },
                   child: Text(
                     'Daftar',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   )),
             ],
           ),

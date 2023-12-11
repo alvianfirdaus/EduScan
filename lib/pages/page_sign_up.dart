@@ -76,12 +76,18 @@ class _pageSignUpState extends State<pageSignUp> {
                   padding: EdgeInsets.only(bottom: 30),
                   child: CustomTextStyle(
                     text: 'Selamat Datang di EduScan',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 23,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 25,
                   ),
                 ),
                 Container(
-                  child: CustomTextStyle(text: 'Buat akun EduScan anda.'),
+                  child: CustomTextStyle(
+                    text: 'Buat akun EduScan anda.',
+                    fontSize: 17,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Container(
                   child: CustomTextField(
@@ -152,6 +158,9 @@ class _pageSignUpState extends State<pageSignUp> {
                         true, // Tampilkan ikon mata untuk ulangi password juga
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 ButtonBar(
                   alignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -172,7 +181,9 @@ class _pageSignUpState extends State<pageSignUp> {
                       child: Text(
                         'Daftar',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ],
