@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/routes/route.dart';
 import 'package:myapp/utils.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import '../widgets/custom_text_style.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -12,6 +12,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -57,7 +58,7 @@ class ProfilePage extends StatelessWidget {
               padding: EdgeInsets.only(top: 10, bottom: 15, left: 13),
               alignment: Alignment.centerLeft,
               child: CustomTextStyle(
-                text: 'Alvian Nur Firdaus',
+                text: user != null ? user.displayName ?? '' : '',
               ),
             ),
 
@@ -89,7 +90,7 @@ class ProfilePage extends StatelessWidget {
               padding: EdgeInsets.only(top: 10, bottom: 15, left: 13),
               alignment: Alignment.centerLeft,
               child: CustomTextStyle(
-                text: 'alviannurfirdaus@gmail.com',
+                text: user != null ? user.email ?? '' : '',
               ),
             ),
 
