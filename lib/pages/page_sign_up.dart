@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:myapp/widgets/custom_field_text.dart';
 import 'package:myapp/widgets/custom_text_style.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final _firebaseAuth = FirebaseAuth.instance;
 
@@ -28,38 +29,27 @@ class _pageSignUpState extends State<pageSignUp> {
       return;
     }
     _formKey.currentState!.save();
-
-    if (enteredPassword != enteredPasswordRepeat) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Password tidak cocok'),
-          backgroundColor: Theme.of(context).errorColor,
-        ),
-      );
-      return;
-    }
-
     try {
       final userCredentials =
           await _firebaseAuth.createUserWithEmailAndPassword(
         email: enteredEmail,
         password: enteredPassword,
       );
+
+      // Menyimpan nama pengguna ke Firebase Authentication
       await userCredentials.user!.updateDisplayName(enteredName);
+
+      // Menyimpan informasi tambahan ke Firestore
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredentials.user!.uid)
+          .set({
+        'name': enteredName,
+        // Anda dapat menambahkan informasi tambahan lainnya di sini sesuai kebutuhan
+      });
 
       print("Registration successful: ${userCredentials.user?.uid}");
       Navigator.pushNamed(context, Routes.riwayat);
-    } on FirebaseAuthException catch (error) {
-      var message = 'Terjadi kesalahan, silahkan coba lagi';
-      if (error.message != null) {
-        message = error.message!;
-      }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: Theme.of(context).errorColor,
-        ),
-      );
     } catch (error) {
       print(error);
     }
