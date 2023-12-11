@@ -28,10 +28,23 @@ class _pageSignUpState extends State<pageSignUp> {
       return;
     }
     _formKey.currentState!.save();
+
+    if (enteredPassword != enteredPasswordRepeat) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Password tidak cocok'),
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
+      return;
+    }
+
     try {
       final userCredentials =
           await _firebaseAuth.createUserWithEmailAndPassword(
-              email: enteredEmail, password: enteredPassword);
+        email: enteredEmail,
+        password: enteredPassword,
+      );
       await userCredentials.user!.updateDisplayName(enteredName);
 
       print("Registration successful: ${userCredentials.user?.uid}");
