@@ -14,53 +14,37 @@ class ScanState extends ConsumerStatefulWidget {
 
 class _ScanState extends ConsumerState<ScanState> {
   List<CameraDescription> cameras = [];
-  late File capturedImage;
+  File? capturedImage;
 
-  var cameraController;
+  CameraController? cameraController;
 
-  Future<Widget> initializeAndDisplayCamera() async {
+  Future<void> initializeAndDisplayCamera() async {
     try {
       // Mengambil daftar kamera yang tersedia
-      // List<CameraDescription> cameras = await availableCameras();
+      cameras = await availableCameras();
 
-      // Menginisialisasi CameraController
       cameraController = CameraController(
         cameras[0],
         ResolutionPreset.medium,
       );
 
       // Menginisialisasi controller dan menunggu inisialisasi selesai
-      await cameraController.initialize();
-
-      // Menampilkan kamera
-      return CameraPreview(cameraController);
+      await cameraController!.initialize();
     } catch (e) {
       print("Kesalahan saat mengakses kamera: $e");
       // Lakukan tindakan yang sesuai jika terjadi kesalahan
-      return Text("Tidak dapat mengakses kamera: $e");
+      rethrow;
     }
   }
 
   void onTakePicture() async {
     try {
-      // List<CameraDescription> cameras = await availableCameras();
-
-      // // Menginisialisasi CameraController
-      // var cameraController = CameraController(
-      //   cameras[0],
-      //   ResolutionPreset.medium,
-      // );
-
-      // // Menginisialisasi controller dan menunggu inisialisasi selesai
-      // await cameraController.initialize();
-      // Ambil gambar
-      XFile xFile = await cameraController.takePicture();
-
-      if (mounted) {
+      if (cameraController != null && cameraController!.value.isInitialized) {
+        XFile xFile = await cameraController!.takePicture();
         final notifier = ref.read(scanProvider.notifier);
         capturedImage = File(xFile.path);
 
-        notifier.updateCapturedImage(capturedImage);
+        notifier.updateCapturedImage(capturedImage!);
 
         print('sukses: $capturedImage');
         Navigator.pushNamed(context, Routes.detail_scan,
@@ -109,9 +93,6 @@ class _ScanState extends ConsumerState<ScanState> {
         floatingActionButton: CekrikButtonBar(
           onPressed: () {
             onTakePicture();
-            print("SUKSES");
-            Navigator.pushNamed(context, Routes.detail_scan,
-                arguments: capturedImage);
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -123,23 +104,19 @@ class _ScanState extends ConsumerState<ScanState> {
               left: 0,
               right: 0,
               bottom: 0,
-              child: cameras.isEmpty
-                  ? Container(
-                      color: Color(1),
-                    )
-                  : FutureBuilder<Widget>(
-                      future: initializeAndDisplayCamera(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.done) {
-                          return snapshot.data ??
-                              Container(color: Colors.green);
-                        } else if (snapshot.hasError) {
-                          return Text("Kesalahan: ${snapshot.error}");
-                        } else {
-                          return CircularProgressIndicator();
-                        }
-                      },
-                    ),
+              child: FutureBuilder(
+                future: initializeAndDisplayCamera(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return CameraPreview(cameraController!);
+                  } else if (snapshot.hasError) {
+                    return Text("Kesalahan: ${snapshot.error}");
+                  } else {
+                    print(snapshot);
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,

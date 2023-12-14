@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
@@ -15,9 +17,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    // Menunggu selama 5 detik dan kemudian melakukan navigasi ke halaman "Sign In"
-    Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushNamed(context, Routes.OnboardingContent);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (FirebaseAuth.instance.currentUser != null) {
+        Navigator.pushNamed(context, Routes.riwayat);
+      } else {
+        // Menunggu selama 5 detik dan kemudian melakukan navigasi ke halaman "Sign In"
+        Future.delayed(Duration(seconds: 2), () {
+          Navigator.pushNamed(context, Routes.OnboardingContent);
+        });
+      }
     });
   }
 
@@ -44,7 +52,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   fontFamily: 'Urbanist',
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
-                  color: const Color(0xff4a4a4a), // Ganti warna teks sesuai kebutuhan
+                  color: const Color(
+                      0xff4a4a4a), // Ganti warna teks sesuai kebutuhan
                 ),
               ),
             ],
