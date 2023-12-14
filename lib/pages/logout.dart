@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/widgets/custom_text_style.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import '../routes/route.dart';
 import '../utils.dart';
 
@@ -41,7 +41,11 @@ class LogoutPage extends StatelessWidget {
               height: 20,
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                // Lakukan logout dari Firebase
+                await FirebaseAuth.instance.signOut();
+
+                // Navigasi ke halaman signIn
                 Navigator.pushNamed(context, Routes.signIn);
               },
               style: ButtonStyle(
