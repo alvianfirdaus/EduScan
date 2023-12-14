@@ -25,7 +25,7 @@ class BottomApp extends StatelessWidget {
                 icon:
                     Icon(Icons.history_outlined, color: Colors.white, size: 27),
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.riwayat);
+                  Navigator.pushReplacementNamed(context, Routes.riwayat);
                 },
               ),
               Text(
@@ -48,7 +48,7 @@ class BottomApp extends StatelessWidget {
                 icon: Icon(Icons.settings, color: Colors.white, size: 26),
                 onPressed: () {
                   // Navigasi ke halaman settings.dart saat tombol "Pengaturan" ditekan
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
