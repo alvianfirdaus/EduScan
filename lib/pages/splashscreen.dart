@@ -19,11 +19,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (FirebaseAuth.instance.currentUser != null) {
-        Navigator.pushNamed(context, Routes.riwayat);
+        // Jika pengguna sudah login, navigasi langsung ke halaman riwayat
+        Navigator.pushReplacementNamed(context, Routes.riwayat);
       } else {
-        // Menunggu selama 5 detik dan kemudian melakukan navigasi ke halaman "Sign In"
-        Future.delayed(Duration(seconds: 2), () {
-          Navigator.pushNamed(context, Routes.OnboardingContent);
+        // Jika pengguna belum login, tunggu selama 5 detik
+        // dan navigasi ke halaman OnboardingContent
+        Future.delayed(Duration(seconds: 5), () {
+          // Cek apakah tampilan OnboardingScreen sudah pernah ditampilkan
+          if (Navigator.canPop(context)) {
+            // Jika sudah pernah ditampilkan, langsung keluar aplikasi
+            Navigator.pop(context);
+          } else {
+            // Jika belum pernah ditampilkan, navigasi ke halaman OnboardingContent
+            Navigator.pushReplacementNamed(context, Routes.OnboardingContent);
+          }
         });
       }
     });
@@ -36,8 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
           255, 255, 255, 255), // Ganti warna latar belakang sesuai kebutuhan
       body: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(
-              context, Routes.OnboardingContent); // Navigasi ke halaman sign-in
+          // Navigator.pushNamed(
+          //     context, Routes.OnboardingContent); // Navigasi ke halaman sign-in
         },
         child: Center(
           child: Column(

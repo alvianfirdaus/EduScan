@@ -24,7 +24,7 @@ class BottomAppDetail extends StatelessWidget {
                 icon: Icon(Icons.camera_alt_outlined,
                     color: Colors.white, size: 27),
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.scan);
+                  Navigator.pushReplacementNamed(context, Routes.scan);
                 },
               ),
               Text(
@@ -47,7 +47,7 @@ class BottomAppDetail extends StatelessWidget {
                 icon: Icon(Icons.save_alt_outlined,
                     color: Colors.white, size: 26),
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.riwayat);
+                  Navigator.pushReplacementNamed(context, Routes.riwayat);
                 },
               ),
               Text(

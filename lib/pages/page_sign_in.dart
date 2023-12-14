@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:myapp/pages/history_v1.dart';
 import 'package:myapp/routes/route.dart';
 import 'package:myapp/widgets/custom_field_text.dart';
 import 'package:myapp/widgets/custom_text_style.dart';
@@ -62,7 +63,12 @@ class _pageSignInState extends State<pageSignIn> {
           email: enteredEmail, password: enteredPassword);
 
       print("Login successful: ${userCredentials.user?.uid}");
-      Navigator.pushNamed(context, Routes.riwayat);
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                HistoryV(), // Ganti dengan halaman yang sesuai
+          ));
     } on FirebaseAuthException catch (error) {
       var message = 'Username dan Password tidak sesuai';
       if (error.code == 'wrong-password') {
