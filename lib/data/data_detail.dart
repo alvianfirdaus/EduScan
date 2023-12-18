@@ -18,6 +18,7 @@ class InitialData {
       waktusc: '09:41',
       imageUrl: 'assets/images/mask-group.png',
       status: 'assets/images/yes.png',
+      wajahUrl: 'assets/images/mask-group.png',
     ),
     Item(
       nik: '12345678901234',
@@ -35,6 +36,7 @@ class InitialData {
       waktusc: '14:15',
       imageUrl: 'assets/images/mask-group.png',
       status: 'assets/images/nof.png',
+      wajahUrl: 'assets/images/mask-group.png',
     ),
     Item(
       nik: '55555555555555',
@@ -52,6 +54,7 @@ class InitialData {
       waktusc: '11:30',
       imageUrl: 'assets/images/mask-group.png',
       status: 'assets/images/yes.png',
+      wajahUrl: 'assets/images/mask-group.png',
     ),
     Item(
       nik: '55555555555555',
@@ -69,6 +72,7 @@ class InitialData {
       waktusc: '11:30',
       imageUrl: 'assets/images/mask-group.png',
       status: 'assets/images/nof.png',
+      wajahUrl: 'assets/images/mask-group.png',
     ),
   ];
 }

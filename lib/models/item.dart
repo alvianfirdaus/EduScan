@@ -13,6 +13,7 @@ class Item {
   final String tanggalsc;
   final String waktusc;
   final String imageUrl;
+  final String wajahUrl;
   final String status;
 
   Item({
@@ -30,6 +31,27 @@ class Item {
     required this.tanggalsc,
     required this.waktusc,
     required this.imageUrl,
+    required this.wajahUrl,
     required this.status,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'nik': nik,
+      'nama': nama,
+      'ttl': ttl,
+      'jenisKelamin': jenisKelamin,
+      'golDarah': golDarah,
+      'alamat': alamat,
+      'agama': agama,
+      'kawin': kawin,
+      'pekerjaan': pekerjaan,
+      'kewarganegaraan': kewarganegaraan,
+      'berlaku': tanggalsc,
+      'waktusc': waktusc,
+      'imageUrl': imageUrl,
+      'wajahUrl': wajahUrl,
+      'status': status,
+    };
+  }
 }

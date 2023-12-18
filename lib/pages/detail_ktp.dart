@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myapp/data/ktp_database.dart';
 import 'package:myapp/models/item.dart';
+import 'package:myapp/routes/route.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/widgets/bottom_appbar_detail.dart';
 import 'package:myapp/providers/scan_provider.dart';
@@ -41,23 +43,19 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // Tambahkan widget Positioned dan Align untuk gambar hasil scan
-            Positioned(
-              left: 0, // Ubah sesuai dengan kebutuhan Anda
-              top: 100, // Ubah sesuai dengan kebutuhan Anda
-              child: Align(
-                alignment: Alignment.center,
-                child: SizedBox(
-                  width: 360, // Ubah sesuai dengan kebutuhan Anda
-                  height: 229, // Ubah sesuai dengan kebutuhan Anda
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Color(0xffffffff),
-                    ),
-                    // child: Image.asset('assets/images/ktp7-1-7Hr.png'),
-                    child: kIsWeb
-                        ? Image.network(capturedFile!.path)
-                        : Image.file(capturedFile!),
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 360, // Ubah sesuai dengan kebutuhan Anda
+                height: 229, // Ubah sesuai dengan kebutuhan Anda
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xffffffff),
                   ),
+                  // child: Image.asset('assets/images/ktp7-1-7Hr.png'),
+                  child: kIsWeb
+                      ? Image.network(capturedFile!.path)
+                      : Image.file(capturedFile!),
                 ),
               ),
             ),
@@ -300,7 +298,17 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
         ),
       ),
       // Tambahkan navigation bar di bagian bawah
-      bottomNavigationBar: BottomAppDetail(),
+      bottomNavigationBar: BottomAppDetail(
+        onSave: () async {
+          final fileByte = await capturedFile.readAsBytes();
+
+          KTPDatabase().save(widget.item, fileByte, fileByte);
+          Navigator.pushReplacementNamed(context, Routes.riwayat);
+        },
+        onRetake: () {
+          Navigator.pushReplacementNamed(context, Routes.scan);
+        },
+      ),
     );
   }
 }
