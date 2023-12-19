@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
 import 'package:myapp/main.dart';
+import 'package:myapp/models/item.dart';
 import 'package:myapp/providers/scan_provider.dart';
 import 'package:myapp/routes/route.dart';
 import 'package:myapp/widgets/bottom_appbar.dart';
@@ -19,6 +20,8 @@ class _ScanState extends ConsumerState<ScanState> with WidgetsBindingObserver {
   File? capturedImage;
 
   CameraController? controller;
+
+  bool _isLoading = false;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -58,6 +61,10 @@ class _ScanState extends ConsumerState<ScanState> with WidgetsBindingObserver {
 
   void onTakePicture() async {
     try {
+      setState(() {
+        _isLoading = true;
+      });
+
       if (controller != null && controller!.value.isInitialized) {
         XFile xFile = await controller!.takePicture();
         final notifier = ref.read(scanProvider.notifier);
@@ -66,16 +73,25 @@ class _ScanState extends ConsumerState<ScanState> with WidgetsBindingObserver {
         notifier.updateCapturedImage(capturedImage!);
 
         print('sukses: $capturedImage');
-        Navigator.pushNamed(context, Routes.detail_scan,
-            arguments: capturedImage);
-
-        sendFileToApi(capturedImage!);
+        final item = await sendFileToApi(capturedImage!);
+        Navigator.pushNamed(
+          context,
+          Routes.detail_scan,
+          arguments: {
+            "image": capturedImage,
+            "item": item,
+          },
+        );
 
         setState(() {});
       }
     } catch (e) {
       print("Kesalahan saat mengambil gambar: $e");
       // Lakukan tindakan yang sesuai jika terjadi kesalahan
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -115,11 +131,13 @@ class _ScanState extends ConsumerState<ScanState> with WidgetsBindingObserver {
           backgroundColor: Color(0xff03a1fe),
           automaticallyImplyLeading: false,
         ),
-        floatingActionButton: CekrikButtonBar(
-          onPressed: () {
-            onTakePicture();
-          },
-        ),
+        floatingActionButton: _isLoading
+            ? CircularProgressIndicator()
+            : CekrikButtonBar(
+                onPressed: () {
+                  onTakePicture();
+                },
+              ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomApp(),
         body: Stack(
@@ -169,35 +187,55 @@ class _ScanState extends ConsumerState<ScanState> with WidgetsBindingObserver {
     );
   }
 
-  Future<void> sendFileToApi(File filePath) async {
-    final apiUrl = "https://c4dc-114-6-31-174.ngrok.io/upload";
-
-    final uri = Uri.parse(apiUrl);
-
-    var request = http.MultipartRequest("POST", uri);
-
-    Map<String, String> headers = {"Content-type": "multipart/form-data"};
-    request.files.add(
-      http.MultipartFile(
-        'image',
-        filePath.readAsBytes().asStream(),
-        filePath.lengthSync(),
-        filename: filePath.path,
+  Future<Item?> sendFileToApi(File filePath) async {
+    final Dio dio = Dio(
+      BaseOptions(
+        baseUrl: 'https://6e22-114-6-31-174.ngrok-free.app/',
+        headers: {
+          'accept': 'application/json',
+        },
       ),
     );
-    request.headers.addAll(headers);
 
     try {
-      // Send the request
-      final response = await request.send();
+      final response = await dio.post(
+        'upload',
+        data: FormData.fromMap({
+          'img': await MultipartFile.fromFile(
+            filePath.path,
+            filename: filePath.path.split('/').last,
+          ),
+        }),
+      );
 
       if (response.statusCode == 200) {
         print('File uploaded successfully');
+        final data = response.data;
+
+        return Item(
+          nik: data['nik'] ?? '',
+          nama: data['nama'] ?? '',
+          ttl: data['ttl'] ?? '',
+          jenisKelamin: data['jenisKelamin'] ?? '',
+          golDarah: data['golDarah'] ?? '',
+          alamat: data['alamat'] ?? '',
+          agama: data['agama'] ?? '',
+          kawin: data['kawin'] ?? '',
+          pekerjaan: data['pekerjaan'] ?? '',
+          kewarganegaraan: data['kewarganegaraan'] ?? '',
+          berlaku: data['berlaku'] ?? '',
+          tanggalsc: data['tanggalsc'] ?? '',
+          waktusc: data['waktusc'] ?? '',
+          imageUrl: data['imageUrl'] ?? '',
+          wajahUrl: data['wajahUrl'] ?? '',
+          status: data['status'] ?? '',
+        );
       } else {
         print('Failed to upload file. Status code: ${response.statusCode}');
       }
     } catch (error) {
       print('Error uploading file: $error');
     }
-  }
+    return null;
+}
 }

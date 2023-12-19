@@ -37,7 +37,6 @@ class Routes {
     detail_riwayat: (context) => ModalRiwayat(),
     scan: (context) => ScanState(),
     detail_scan: (context) => DetailKtp(
-          item: InitialData.items[0],
         ),
     setting: (context) => Settings(),
     profile: (context) => ProfilePage(),

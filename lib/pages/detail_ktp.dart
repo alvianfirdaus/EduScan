@@ -1,19 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/data/ktp_database.dart';
 import 'package:myapp/models/item.dart';
+import 'package:myapp/providers/scan_provider.dart';
 import 'package:myapp/routes/route.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/widgets/bottom_appbar_detail.dart';
-import 'package:myapp/providers/scan_provider.dart';
 
 class DetailKtp extends ConsumerStatefulWidget {
-  final Item item;
-
-  const DetailKtp({Key? key, required this.item}) : super(key: key);
+  const DetailKtp({Key? key}) : super(key: key);
 
   @override
   ConsumerState<DetailKtp> createState() => _DetailKtpState();
@@ -23,6 +19,10 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
   @override
   Widget build(BuildContext context) {
     final capturedFile = ref.watch(scanProvider);
+    final detail =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final item = detail['item'] as Item?;
+
     print('captured image: $capturedFile');
     return Scaffold(
       appBar: AppBar(
@@ -83,7 +83,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.nik,
+                    item?.nik ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -103,7 +103,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.nama,
+                    item?.nama ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -123,7 +123,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.ttl,
+                    item?.ttl ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -143,7 +143,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.jenisKelamin,
+                    item?.jenisKelamin ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -163,7 +163,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.golDarah,
+                    item?.golDarah ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -183,7 +183,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.alamat,
+                    item?.alamat ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -203,7 +203,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.agama,
+                    item?.agama ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -223,7 +223,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.kawin,
+                    item?.kawin ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -243,7 +243,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.pekerjaan,
+                    item?.pekerjaan ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -263,7 +263,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.kewarganegaraan,
+                    item?.kewarganegaraan ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -283,7 +283,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
                     ),
                   ),
                   subtitle: Text(
-                    widget.item.berlaku,
+                    item?.berlaku ?? '',
                     style: SafeGoogleFont(
                       'Urbanist',
                       fontSize: 15,
@@ -300,15 +300,17 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
       // Tambahkan navigation bar di bagian bawah
       bottomNavigationBar: BottomAppDetail(
         onSave: () async {
+          if (item == null) return;
+
           final fileByte = await capturedFile.readAsBytes();
 
-          KTPDatabase().save(widget.item, fileByte, fileByte);
+          KTPDatabase().save(item, fileByte, fileByte);
           Navigator.pushReplacementNamed(context, Routes.riwayat);
         },
         onRetake: () {
           Navigator.popAndPushNamed(context, Routes.scan);
         },
       ),
-    );
-  }
+);
+}
 }
