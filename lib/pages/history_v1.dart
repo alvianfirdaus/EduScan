@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/data/ktp_database.dart';
 import 'package:myapp/models/item.dart';
 import 'package:myapp/data/data_detail.dart';
 import 'package:myapp/utils.dart';
@@ -26,7 +27,21 @@ class HistoryV extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         centerTitle: true,
       ),
-      body: CardWidget(items: InitialData.items),
+      body: FutureBuilder(
+          future: KTPDatabase().all(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return CardWidget(items: snapshot.data ?? []);
+            }
+
+            if (snapshot.hasError) {
+              return Center(child: Text(snapshot.error.toString()));
+            }
+
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }),
       floatingActionButton:
           FloatingButtonBar(), // ini untuk memanggil widget floating_button_appbar
       floatingActionButtonLocation:

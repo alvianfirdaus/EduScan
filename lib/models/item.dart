@@ -54,4 +54,25 @@ class Item {
       'status': status,
     };
   }
+
+  factory Item.fromJson(Map<String, dynamic> data) {
+    return Item(
+      nik: data['nik'],
+      nama: data['nama'],
+      ttl: data['ttl'],
+      jenisKelamin: data['jenisKelamin'],
+      golDarah: data['golDarah'],
+      alamat: data['alamat'],
+      agama: data['agama'],
+      kawin: data['kawin'],
+      pekerjaan: data['pekerjaan'],
+      kewarganegaraan: data['kewarganegaraan'],
+      berlaku: data['berlaku'],
+      waktusc: data['waktusc'],
+      imageUrl: data['imageUrl'],
+      wajahUrl: data['wajahUrl'],
+      status: data['status'],
+      tanggalsc: data['berlaku'],
+    );
+  }
 }

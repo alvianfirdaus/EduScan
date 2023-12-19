@@ -43,7 +43,7 @@ class ItemCard extends StatelessWidget {
         elevation: 0,
         child: ListTile(
           contentPadding: EdgeInsets.all(8),
-          leading: Image.asset(item.imageUrl),
+          leading: Image.network(item.imageUrl),
           title: Text(
             item.nama,
             style: SafeGoogleFont(

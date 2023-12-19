@@ -31,4 +31,14 @@ class KTPDatabase {
         'wajahUrl': await wajahRef.getDownloadURL(),
       }));
   }
+
+  Future<List<Item>> all() async {
+    final user = auth.currentUser;
+
+    final ref = firestore.collection('users').doc(user!.uid).collection('ktps');
+
+    final snapshot = await ref.get();
+
+    return snapshot.docs.map((doc) => Item.fromJson(doc.data())).toList();
+  }
 }
