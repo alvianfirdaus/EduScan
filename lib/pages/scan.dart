@@ -1,35 +1,54 @@
 import 'dart:io';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
+import 'package:myapp/main.dart';
 import 'package:myapp/providers/scan_provider.dart';
 import 'package:myapp/routes/route.dart';
-import 'package:myapp/widgets/cekrik.dart';
 import 'package:myapp/widgets/bottom_appbar.dart';
+import 'package:myapp/widgets/cekrik.dart';
 
 class ScanState extends ConsumerStatefulWidget {
   @override
   ConsumerState<ScanState> createState() => _ScanState();
 }
 
-class _ScanState extends ConsumerState<ScanState> {
-  List<CameraDescription> cameras = [];
+class _ScanState extends ConsumerState<ScanState> with WidgetsBindingObserver {
   File? capturedImage;
 
-  CameraController? cameraController;
+  CameraController? controller;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final CameraController? cameraController = controller;
+
+    // App state changed before we got the chance to initialize.
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      return;
+    }
+
+    if (state == AppLifecycleState.inactive) {
+      cameraController.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      initializeAndDisplayCamera();
+    }
+  }
 
   Future<void> initializeAndDisplayCamera() async {
     try {
-      // Mengambil daftar kamera yang tersedia
-      cameras = await availableCameras();
-
-      cameraController = CameraController(
+      controller = CameraController(
         cameras[0],
         ResolutionPreset.medium,
       );
 
       // Menginisialisasi controller dan menunggu inisialisasi selesai
-      await cameraController!.initialize();
+      await controller!.initialize();
+
+      setState(() {});
+
+      // setState(() {});
     } catch (e) {
       print("Kesalahan saat mengakses kamera: $e");
       // Lakukan tindakan yang sesuai jika terjadi kesalahan
@@ -39,8 +58,8 @@ class _ScanState extends ConsumerState<ScanState> {
 
   void onTakePicture() async {
     try {
-      if (cameraController != null && cameraController!.value.isInitialized) {
-        XFile xFile = await cameraController!.takePicture();
+      if (controller != null && controller!.value.isInitialized) {
+        XFile xFile = await controller!.takePicture();
         final notifier = ref.read(scanProvider.notifier);
         capturedImage = File(xFile.path);
 
@@ -49,6 +68,8 @@ class _ScanState extends ConsumerState<ScanState> {
         print('sukses: $capturedImage');
         Navigator.pushNamed(context, Routes.detail_scan,
             arguments: capturedImage);
+
+        sendFileToApi(capturedImage!);
 
         setState(() {});
       }
@@ -61,14 +82,18 @@ class _ScanState extends ConsumerState<ScanState> {
   @override
   void initState() {
     super.initState();
-    // Inisialisasi kamera
-    availableCameras().then((value) {
-      setState(() {
-        cameras = value;
-      });
 
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       initializeAndDisplayCamera();
     });
+  }
+
+  @override
+  void dispose() {
+    print("scan: disposed");
+    controller?.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -99,24 +124,10 @@ class _ScanState extends ConsumerState<ScanState> {
         bottomNavigationBar: BottomApp(),
         body: Stack(
           children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: FutureBuilder(
-                future: initializeAndDisplayCamera(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return CameraPreview(cameraController!);
-                  } else if (snapshot.hasError) {
-                    return Text("Kesalahan: ${snapshot.error}");
-                  } else {
-                    print(snapshot);
-                    return Center(child: CircularProgressIndicator());
-                  }
-                },
-              ),
+            Positioned.fill(
+              child: controller?.value.isInitialized == true
+                  ? CameraPreview(controller!)
+                  : Center(child: CircularProgressIndicator()),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -156,5 +167,37 @@ class _ScanState extends ConsumerState<ScanState> {
         ),
       ),
     );
+  }
+
+  Future<void> sendFileToApi(File filePath) async {
+    final apiUrl = "https://c4dc-114-6-31-174.ngrok.io/upload";
+
+    final uri = Uri.parse(apiUrl);
+
+    var request = http.MultipartRequest("POST", uri);
+
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+    request.files.add(
+      http.MultipartFile(
+        'image',
+        filePath.readAsBytes().asStream(),
+        filePath.lengthSync(),
+        filename: filePath.path,
+      ),
+    );
+    request.headers.addAll(headers);
+
+    try {
+      // Send the request
+      final response = await request.send();
+
+      if (response.statusCode == 200) {
+        print('File uploaded successfully');
+      } else {
+        print('Failed to upload file. Status code: ${response.statusCode}');
+      }
+    } catch (error) {
+      print('Error uploading file: $error');
+    }
   }
 }

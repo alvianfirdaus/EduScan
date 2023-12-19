@@ -306,7 +306,7 @@ class _DetailKtpState extends ConsumerState<DetailKtp> {
           Navigator.pushReplacementNamed(context, Routes.riwayat);
         },
         onRetake: () {
-          Navigator.pushReplacementNamed(context, Routes.scan);
+          Navigator.popAndPushNamed(context, Routes.scan);
         },
       ),
     );
